@@ -430,3 +430,27 @@ dangling blob 92aad319cf0b0f1f7239bed75b15deed3253b77f
 
 ```
 
+## Task 10
+
+```bash
+    ~/Downloads/mobile-dev-backend master ❯ du -hs .git                                                                                                  21:12:02
+2,7M	.git
+~/Downloads/mobile-dev-backend master ❯ git gc --aggressive --prune=now                                                                              21:12:24
+Перечисление объектов: 318, готово.
+Подсчет объектов: 100% (318/318), готово.
+При сжатии изменений используется до 4 потоков
+Сжатие объектов: 100% (308/308), готово.
+Запись объектов: 100% (318/318), готово.
+Всего 318 (изменения 197), повторно использовано 0 (изменения 0)
+~/Downloads/mobile-dev-backend master ❯ du -hs .git                                                                                                  21:13:09
+428K	.git
+
+```
+
+## Task 11
+  
+  ```bash
+  ~/Downloads/mobile-dev-backend master ❯ git add --patch REPORT.md                                                                 21:13:13
+  ```
+
+  Дальше через меню тыкаем e и выбираем то, что нужно оставить в вим редакторе + коммитим
