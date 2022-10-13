@@ -44,3 +44,12 @@ error: Ветка «ci» не слита полностью.
 
 ![image](docs/5.png)
 
+## Task 4
+
+```
+
+git blame -L 32,32  prisma/seed.ts
+3c82961d (Nikolay Andreev 2021-12-20 00:28:11 +0300 32)      rating: game.age_rating_sorting_i
+
+```
+
