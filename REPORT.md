@@ -34,3 +34,13 @@ error: Ветка «ci» не слита полностью.
 `git rebase -i HEAD~2`
 ![image](docs/3.png)
 
+## Task 3
+
+`git log --oneline --graph --decorate --all --reflog`
+
+![image](docs/4.png)
+
+`git checkout 0e9cd7c`
+
+![image](docs/5.png)
+
