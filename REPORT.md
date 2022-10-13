@@ -304,3 +304,38 @@ WARNING: Ref 'refs/heads/old-master' is unchanged
 
 ```
 
+## Task 7
+
+```bash
+~/Downloads/mobile-dev-backend feature ❯ git filter-branch --env-filter 'GIT_AUTHOR_NAME=Kerenery GIT_AUTHOR_EMAIL=djhitekdieant@gmail.com' fd00db2^..feature
+WARNING: git-filter-branch has a glut of gotchas generating mangled history
+	 rewrites.  Hit Ctrl-C before proceeding to abort, then use an
+	 alternative filtering tool such as 'git filter-repo'
+	 (https://github.com/newren/git-filter-repo/) instead.  See the
+	 filter-branch manual page for more details; to squelch this warning,
+	 set FILTER_BRANCH_SQUELCH_WARNING=1.
+Proceeding with filter-branch...
+~/Downloads/mobile-dev-backend feature ❯ git update-ref -d refs/original/refs/heads/feature                                                          21:00:58
+~/Downloads/mobile-dev-backend feature ❯ git --no-pager log --all --decorate --oneline --graph                                                       21:01:05
+* 04adb68 (master) feat: .env to gitignore
+* dd3e739 feat: CI build pipeline dockerfile
+* 1f57100 chore: update README.md
+* 86aac85 fix: make cover empty if it's not present in eShop
+| * d86b585 (HEAD -> feature) chore: update README.md
+| * 38a07b2 feat: add pagination for all games query
+| * 68761fa fix: make games service methods asynchronous
+|/  
+* 4cac550 feat: add price field for game
+* 1b0242d feat: add random game endpoint
+* 2a2a832 refactor: rewrite games module to match Prisma generated code and main task
+* 57b8977 feat: add Prisma service
+* 5997013 fix: update seed to match Nintendo eShop API corner cases
+* c9e992c feat: add seed to get games from eShop API
+* dade179 feat: add Game model and its migration
+* 15d2a11 feat: add games module skeleton
+* 024877a chore: add Prisma packages
+* 8673a61 chore: initiate repository
+* 0e9cd7c (old-master) Initiate repository
+
+```
+
