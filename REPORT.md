@@ -279,3 +279,28 @@ Date:   Mon Dec 20 00:28:11 2021 +0300
 ~/Downloads/mobile-dev-backend bisect/bad | bisect ❯ git bisect reset
 ```
 
+## Task 6
+
+```bash
+~/Downloads/mobile-dev-backend master ❯ git filter-branch --tree-filter "rm -f .env" -- --all                                                        20:41:27
+WARNING: git-filter-branch has a glut of gotchas generating mangled history
+	 rewrites.  Hit Ctrl-C before proceeding to abort, then use an
+	 alternative filtering tool such as 'git filter-repo'
+	 (https://github.com/newren/git-filter-repo/) instead.  See the
+	 filter-branch manual page for more details; to squelch this warning,
+	 set FILTER_BRANCH_SQUELCH_WARNING=1.
+Proceeding with filter-branch...
+
+Rewrite 646fe80c0bdbdef10a1ed234ae670aedd624d212 (15/17) (1 seconds passed, remaining 0 predicted)    
+Ref 'refs/heads/feature' was rewritten
+Ref 'refs/heads/master' was rewritten
+WARNING: Ref 'refs/heads/old-master' is unchanged
+~/Downloads/mobile-dev-backend master ❯ git status                                                                                               11s 20:43:53
+Текущая ветка: master
+нечего коммитить, нет изменений в рабочем каталоге
+~/Downloads/mobile-dev-backend master ❯ echo .env >> .gitignore                                                                                      20:44:20
+~/Downloads/mobile-dev-backend master  ❯ git commit -am "feat: .env to gitignore"                                                                   20:44:55
+[master 04adb68] feat: .env to gitignore
+
+```
+
