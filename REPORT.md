@@ -339,3 +339,80 @@ Proceeding with filter-branch...
 
 ```
 
+## Task 8
+
+```bash
+
+~/Downloads/mobile-dev-backend master ❯ git config --global rerere.enabled true                                                                      21:02:17
+~/Downloads/mobile-dev-backend master ❯ git merge feature                                                                                            21:02:59
+Автослияние README.md
+КОНФЛИКТ (содержимое): Конфликт слияния в README.md
+Запись прообраза для «README.md»
+Сбой автоматического слияния; исправьте конфликты, затем зафиксируйте результат.
+~/Downloads/mobile-dev-backend master | merge ❯ git status                                                                                           21:03:22
+Текущая ветка: master
+У вас есть не слитые пути.
+  (разрешите конфликты, затем запустите «git commit»)
+  (используйте «git merge --abort», чтобы остановить операцию слияния)
+
+Изменения, которые будут включены в коммит:
+	изменено:      src/games/games.controller.ts
+	изменено:      src/games/games.service.ts
+
+Не слитые пути:
+  (используйте «git add <файл>...», чтобы пометить разрешение конфликта)
+	оба изменены:   README.md
+
+~/Downloads/mobile-dev-backend master | merge ❯ nano README.md                                                                                       21:04:10
+~/Downloads/mobile-dev-backend master | merge ❯ git status                                                                                       34s 21:05:04
+Текущая ветка: master
+У вас есть не слитые пути.
+  (разрешите конфликты, затем запустите «git commit»)
+  (используйте «git merge --abort», чтобы остановить операцию слияния)
+
+Изменения, которые будут включены в коммит:
+	изменено:      src/games/games.controller.ts
+	изменено:      src/games/games.service.ts
+
+Не слитые пути:
+  (используйте «git add <файл>...», чтобы пометить разрешение конфликта)
+	оба изменены:   README.md
+
+~/Downloads/mobile-dev-backend master | merge ❯ git add README.md                                                                                    21:05:10
+~/Downloads/mobile-dev-backend master | merge ❯ git status                                                                                           21:05:17
+Текущая ветка: master
+Все конфликты исправлены, но вы все еще в процессе слияния.
+  (используйте «git commit», чтобы завершить слияние)
+
+Изменения, которые будут включены в коммит:
+	изменено:      README.md
+	изменено:      src/games/games.controller.ts
+	изменено:      src/games/games.service.ts
+
+~/Downloads/mobile-dev-backend master | merge ❯ git commit                                                                                           21:05:22
+Recorded resolution for 'README.md'.
+[master 2a11bfb] Merge branch 'feature'
+~/Downloads/mobile-dev-backend master ❯ git log                                                                                                  11s 21:05:47
+~/Downloads/mobile-dev-backend master ❯ git reset --hard HEAD~1                                                                                   4s 21:05:58
+Указатель HEAD сейчас на коммите 04adb68 feat: .env to gitignore
+~/Downloads/mobile-dev-backend master ❯ git reflog                                                                                                   21:06:40
+~/Downloads/mobile-dev-backend master ❯ git merge feature                                                                                            21:06:57
+Автослияние README.md
+КОНФЛИКТ (содержимое): Конфликт слияния в README.md
+«README.md» — исправлено используя предыдущее решение.
+Сбой автоматического слияния; исправьте конфликты, затем зафиксируйте результат.
+~/Downloads/mobile-dev-backend master | merge ❯ nano README.md                                                                                       21:07:19
+~/Downloads/mobile-dev-backend master | merge ❯ git commit                                                                                       15s 21:07:55
+U	README.md
+error: Невозможно закоммитить, так как у вас имеются не слитые файлы.
+подсказка: Исправьте их в рабочем каталоге, затем запустите «git add/rm <файл>»,
+подсказка: чтобы пометить исправление и сделайте коммит.
+fatal: Выход из-за неразрешенного конфликта.
+~/Downloads/mobile-dev-backend master | merge ❯ git add .                                                                                            21:08:02
+~/Downloads/mobile-dev-backend master | merge ❯ git commit                                                                                           21:08:13
+[master f98f643] Merge branch 'feature'
+
+```
+
+![image](docs/6.png)
+
