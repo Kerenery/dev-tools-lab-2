@@ -416,3 +416,17 @@ fatal: Выход из-за неразрешенного конфликта.
 
 ![image](docs/6.png)
 
+## Task 9
+
+```bash
+~/Downloads/mobile-dev-backend master ❯ git fsck                                                                                                     21:08:17
+Проверка каталогов объектов: 100% (256/256), готово.
+dangling blob 495c7dab9ffd6e0c1bde2b1f66504743909cab3c
+dangling blob 71480256f7d5b502740a7f7f590915fc03cb55d8
+dangling blob 7950c3caf80f0cc5aed3238b25df4cbee546d567
+missing tree 4b825dc642cb6eb9a060e54bf8d69288fbee4904
+dangling blob 687adf2ee315e1f618f60ded0856850725d59ea5
+dangling blob 92aad319cf0b0f1f7239bed75b15deed3253b77f
+
+```
+
