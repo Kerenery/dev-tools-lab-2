@@ -53,3 +53,229 @@ git blame -L 32,32  prisma/seed.ts
 
 ```
 
+## Task 5
+
+```bash
+~/Downloads/mobile-dev-backend master  ❯ npm run test                                                                                           46s 20:30:06
+
+> mobile-dev-backend@0.0.1 test
+> jest
+
+ FAIL  src/prisma/prisma.service.spec.ts
+  ● Test suite failed to run
+
+    Your test suite must contain at least one test.
+
+      at onResult (../node_modules/@jest/core/build/TestScheduler.js:175:18)
+      at ../node_modules/@jest/core/build/TestScheduler.js:316:17
+      at ../node_modules/emittery/index.js:260:13
+          at Array.map (<anonymous>)
+      at Emittery.emit (../node_modules/emittery/index.js:258:23)
+
+ FAIL  src/app.controller.spec.ts (5.192 s)
+  ● AppController › root › should return "Hello World!"
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Hello World!"
+    Received: "Hello Universe!"
+
+      17 |   describe('root', () => {
+      18 |     it('should return "Hello World!"', () => {
+    > 19 |       expect(appController.getHello()).toBe('Hello World!');
+         |                                        ^
+      20 |     });
+      21 |   });
+      22 | });
+
+      at Object.<anonymous> (app.controller.spec.ts:19:40)
+
+Test Suites: 2 failed, 2 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        5.612 s
+Ran all test suites.
+~/Downloads/mobile-dev-backend master  ❯ git bisect start                                                                                        7s 20:30:22
+~/Downloads/mobile-dev-backend master | bisect ❯ git bisect reset                                                                                    20:32:06
+M	package-lock.json
+Уже на «master»
+~/Downloads/mobile-dev-backend master  ❯ git log --all --decorate --oneline --graph                                                                 20:32:19
+~/Downloads/mobile-dev-backend master  ❯ git checkout old-master                                                                                21s 20:32:45
+error: Ваши локальные изменения в указанных файлах будут перезаписаны при переключении на состояние:
+	package-lock.json
+Сделайте коммит или спрячьте ваши изменения перед переключением веток.
+Прерываю
+~/Downloads/mobile-dev-backend master  ❯ git reset --hard HEAD~1                                                                                    20:32:55
+Указатель HEAD сейчас на коммите 48330aa chore: update README.md
+~/Downloads/mobile-dev-backend master ❯ git reflog                                                                                                   20:33:07
+~/Downloads/mobile-dev-backend master ❯ git reset --hard HEAD@{1}                                                                                 9s 20:33:58
+Указатель HEAD сейчас на коммите 646fe80 feat: CI build pipeline dockerfile
+~/Downloads/mobile-dev-backend master ❯ git log --all --decorate --oneline --graph                                                                   20:34:16
+~/Downloads/mobile-dev-backend master ❯ git checkout old-master                                                                                      20:34:24
+Переключились на ветку «old-master»
+~/Downloads/mobile-dev-backend old-master ❯ git reset --hard HEAD~1                                                                                  20:34:32
+Указатель HEAD сейчас на коммите 0e9cd7c Initiate repository
+~/Downloads/mobile-dev-backend old-master ❯ git log --all --decorate --oneline --graph                                                               20:34:45
+~/Downloads/mobile-dev-backend old-master ❯ git --no-pager log --all --decorate --oneline --graph                                                29s 20:35:33
+* 646fe80 (master) feat: CI build pipeline dockerfile
+* 48330aa chore: update README.md
+* 1b8279c fix: make cover empty if it's not present in eShop
+| * 12c17ba (feature) chore: update README.md
+| * f099927 feat: add pagination for all games query
+| * 2cd3129 fix: make games service methods asynchronous
+|/  
+* 9dc1ed9 feat: add price field for game
+* 93d7a2e feat: add random game endpoint
+* bf7965e refactor: rewrite games module to match Prisma generated code and main task
+* 5d8f66e feat: add Prisma service
+* 9100bc4 fix: update seed to match Nintendo eShop API corner cases
+* 3c82961 feat: add seed to get games from eShop API
+* a57543b feat: add Game model and its migration
+* 15d2a11 feat: add games module skeleton
+* 024877a chore: add Prisma packages
+* 8673a61 chore: initiate repository
+* 0e9cd7c (HEAD -> old-master) Initiate repository
+~/Downloads/mobile-dev-backend old-master ❯ git bisect                                                                                               20:36:02
+использование: git bisect [help|start|bad|good|new|old|terms|skip|next|reset|visualize|view|replay|log|run]
+~/Downloads/mobile-dev-backend old-master ❯ git checkout master                                                                                      20:36:11
+Переключились на ветку «master»
+~/Downloads/mobile-dev-backend master ❯ git bisect start                                                                                             20:36:25
+~/Downloads/mobile-dev-backend master | bisect ❯ git bisect bad 646fe80                                                                              20:36:35
+~/Downloads/mobile-dev-backend master | bisect ❯ git bisect good 8673a61                                                                             20:36:55
+Бинарный поиск: 5 редакций осталось проверить после этой (примерно 3 шага)
+[5d8f66e40942eddf200facecef45316924bbdb4f] feat: add Prisma service
+~/Downloads/mobile-dev-backend feature~6 | bisect ❯ npm run test                                                                                     20:37:09
+
+> mobile-dev-backend@0.0.1 test
+> jest
+
+ FAIL  src/app.controller.spec.ts
+  AppController
+    root
+      ✕ should return "Hello World!" (19 ms)
+
+  ● AppController › root › should return "Hello World!"
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Hello World!"
+    Received: "Hello Universe!"
+
+      17 |   describe('root', () => {
+      18 |     it('should return "Hello World!"', () => {
+    > 19 |       expect(appController.getHello()).toBe('Hello World!');
+         |                                        ^
+      20 |     });
+      21 |   });
+      22 | });
+
+      at Object.<anonymous> (app.controller.spec.ts:19:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.873 s, estimated 6 s
+Ran all test suites.
+~/Downloads/mobile-dev-backend feature~6 | bisect ❯ git bisect bad                                                                                4s 20:37:55
+Бинарный поиск: 2 редакции осталось проверить после этой (примерно 2 шага)
+[a57543b9a4125314662084ae278c2fed07cdd54a] feat: add Game model and its migration
+~/Downloads/mobile-dev-backend bisect/bad~3 | bisect ❯ npm run test                                                                                  20:38:23
+
+> mobile-dev-backend@0.0.1 test
+> jest
+
+ PASS  src/app.controller.spec.ts
+  AppController
+    root
+      ✓ should return "Hello World!" (17 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        2.948 s, estimated 3 s
+Ran all test suites.
+~/Downloads/mobile-dev-backend bisect/bad~3 | bisect ❯ git bisect good                                                                            4s 20:38:37
+Бинарный поиск: 0 редакций осталось проверить после этой (примерно 1 шаг)
+[9100bc42e01e1972affceec1c2f26800df4089df] fix: update seed to match Nintendo eShop API corner cases
+~/Downloads/mobile-dev-backend bisect/bad~1 | bisect ❯ npm run test                                                                                  20:38:45
+
+> mobile-dev-backend@0.0.1 test
+> jest
+
+ FAIL  src/app.controller.spec.ts
+  AppController
+    root
+      ✕ should return "Hello World!" (19 ms)
+
+  ● AppController › root › should return "Hello World!"
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Hello World!"
+    Received: "Hello Universe!"
+
+      17 |   describe('root', () => {
+      18 |     it('should return "Hello World!"', () => {
+    > 19 |       expect(appController.getHello()).toBe('Hello World!');
+         |                                        ^
+      20 |     });
+      21 |   });
+      22 | });
+
+      at Object.<anonymous> (app.controller.spec.ts:19:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.854 s, estimated 3 s
+Ran all test suites.
+~/Downloads/mobile-dev-backend bisect/bad~1 | bisect ❯ git bisect bad                                                                             4s 20:38:57
+Бинарный поиск: 0 редакций осталось проверить после этой (примерно 0 шагов)
+[3c82961d432a69ff82d5fc958b841a54cb4c6234] feat: add seed to get games from eShop API
+~/Downloads/mobile-dev-backend bisect/bad~1 | bisect ❯ npm run test                                                                                  20:39:01
+
+> mobile-dev-backend@0.0.1 test
+> jest
+
+ FAIL  src/app.controller.spec.ts
+  AppController
+    root
+      ✕ should return "Hello World!" (22 ms)
+
+  ● AppController › root › should return "Hello World!"
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Hello World!"
+    Received: "Hello Universe!"
+
+      17 |   describe('root', () => {
+      18 |     it('should return "Hello World!"', () => {
+    > 19 |       expect(appController.getHello()).toBe('Hello World!');
+         |                                        ^
+      20 |     });
+      21 |   });
+      22 | });
+
+      at Object.<anonymous> (app.controller.spec.ts:19:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.77 s, estimated 3 s
+Ran all test suites.
+~/Downloads/mobile-dev-backend bisect/bad~1 | bisect ❯ git bisect bad                                                                             4s 20:39:08
+3c82961d432a69ff82d5fc958b841a54cb4c6234 is the first bad commit
+commit 3c82961d432a69ff82d5fc958b841a54cb4c6234
+Author: Nikolay Andreev <bakasaru@list.ru>
+Date:   Mon Dec 20 00:28:11 2021 +0300
+
+    feat: add seed to get games from eShop API
+
+ prisma/seed.ts     | 57 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/app.service.ts |  2 +-
+ 2 files changed, 58 insertions(+), 1 deletion(-)
+ create mode 100644 prisma/seed.ts
+~/Downloads/mobile-dev-backend bisect/bad | bisect ❯ git bisect reset
+```
+
